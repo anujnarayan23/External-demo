@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: events-external-service
+  name: events-external
   labels:
-    app: events-external-service
+    app: events-external
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: events-external-service
+      app: events-external
   template:
     metadata:
       labels:
-        app: events-external-service
+        app: events-external
     spec:
       containers:
-      - name: events-external-service
+      - name: events-external
         image: gcr.io/playground-s-11-0bd726/external-image:v1.0.0
         env:
         - name: PORT
@@ -51,7 +51,7 @@ spec:
         protocol: TCP
         targetPort: 8080
   selector: 
-    app: events-external-service
+    app: events-external
   type: LoadBalancer
 
 ---
