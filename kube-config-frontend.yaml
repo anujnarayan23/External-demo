@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: avenger-frontend
+  name: events-external-service
   labels:
-    app: avenger-frontend
+    app: events-external-service
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: avenger-frontend
+      app: events-external-service
   template:
     metadata:
       labels:
-        app: avenger-frontend
+        app: events-external-service
     spec:
       containers:
-      - name: avenger-frontend
+      - name: events-external-service
         image: gcr.io/playground-s-11-0bd726/external-image:v1.0.0
         env:
         - name: PORT
@@ -51,19 +51,19 @@ spec:
         protocol: TCP
         targetPort: 8080
   selector: 
-    app: avenger-frontend
+    app: events-external-service
   type: LoadBalancer
 
 ---
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: avenger-frontend-autoscaler
+  name: events-external-autoscaler
 spec:
   scaleTargetRef:
     apiVersion: apps/v2beta1
     kind: Deployment
-    name: avenger-frontend
+    name: events-external
   minReplicas: 3
   maxReplicas: 6
   metrics:
