@@ -22,7 +22,7 @@ spec:
         - name: PORT
           value: "80"
         - name: SERVER
-          value: "http://events-external-service"
+          value: "http://events-internal-service"
         ports:
         - containerPort: 8080
           name: "events-port"
@@ -44,7 +44,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata: 
-  name: avenger-frontend-services
+  name: events-external-service
 spec: 
   ports: 
      -  port: 80
